@@ -8,8 +8,9 @@ IONIC
 
 
 2. Generate Component
-	ionic g
+	`ionic g`
 	`ionic generate component / ionic g component`
+	`ionic g component statusDetail`
 
 3. Component Module
 
@@ -20,5 +21,4 @@ IONIC
 	ERROR: 'ion-list' is not a known element
 
 6. Navigation from a Component
-
 	`ionic g `

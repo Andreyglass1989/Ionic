@@ -11,7 +11,7 @@ import { Component, Input } from '@angular/core';
   templateUrl: 'status-detail.html'
 })
 export class StatusDetailComponent {
-  @Input() myObjectNameAny: any;
+  @Input() myObjectNameAny: {title:string, id:number};
   text: string;
 
   constructor() {

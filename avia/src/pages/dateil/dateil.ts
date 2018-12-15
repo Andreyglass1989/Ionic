@@ -15,10 +15,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class DateilPage {
 	statusItem: any;
+	newObject: {title:string, id:number};
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   	console.log(NavParams)
     this.statusItem = navParams.get("statusItem")
-
+    this.newObject = {
+    	title:"New Object Title", id:12
+    }
   }
 
   ionViewDidLoad() {
