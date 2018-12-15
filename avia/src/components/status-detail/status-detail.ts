@@ -20,4 +20,8 @@ export class StatusDetailComponent {
     this.text = 'Hello World yahayahha';
   }
 
+  handleClick(event){
+  	alert("Hello world")
+  }
+
 }
