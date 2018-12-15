@@ -18,3 +18,7 @@ IONIC
 
 5. Ionic List Component
 	ERROR: 'ion-list' is not a known element
+
+6. Navigation from a Component
+
+	`ionic g `

@@ -14,8 +14,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'dateil.html',
 })
 export class DateilPage {
-
+	statusItem: any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+  	console.log(NavParams)
+    this.statusItem = navParams.get("statusItem")
+
   }
 
   ionViewDidLoad() {
