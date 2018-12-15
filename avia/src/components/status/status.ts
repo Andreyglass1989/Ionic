@@ -1,4 +1,10 @@
 import { Component } from '@angular/core';
+import { NavController } from 'ionic-angular'
+
+
+import { DateilPage } from '../../pages/dateil/dateil';
+
+
 
 /**
  * Generated class for the StatusComponent component.
@@ -14,12 +20,12 @@ export class StatusComponent {
 
   results: any[];
 
-  constructor() {
+  constructor(public navCtrl: NavController) {
     console.log('Hello StatusComponent Component');
     this.results = ['Hello', 'World'];
   }
 
   handleClick(event, statusItem){
-  	alert("It's working!" + ' ' + statusItem)
+  	this.navCtrl.push(DateilPage, {statusItem: statusItem})
   }
 }
