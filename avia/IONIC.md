@@ -25,3 +25,6 @@ IONIC
 
 7.login page
 	`ionic g page login`
+
+8.Bind a Form to a Model with ngModel
+	`ionic g component auth`
