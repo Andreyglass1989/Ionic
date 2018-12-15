@@ -15,3 +15,6 @@ IONIC
 
 4. Iterating in a Ionic Component
 	ERROR: Can't bind to 'ngForOf'
+
+5. Ionic List Component
+	ERROR: 'ion-list' is not a known element

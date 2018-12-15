@@ -1,6 +1,6 @@
 <!-- Generated template for the StatusComponent component -->
-<ul>
-	<li *ngFor='let status1 of results'>
-		{{ status1 }}
-	</li>	
-</ul>	
+<ion-list>
+  <button ion-item *ngFor='let status1 of results'>
+    <ion-icon name="leaf" item-start></ion-icon> {{ status1 }}
+  </button>  
+</ion-list>
