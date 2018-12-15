@@ -22,3 +22,6 @@ IONIC
 
 6. Navigation from a Component
 	`ionic g `
+
+7.login page
+	`ionic g page login`
