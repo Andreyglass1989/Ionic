@@ -15,6 +15,6 @@
 
 <ion-content padding>
 	{{ statusItem }}
-	<status-detail [myObjectNameAny]='newObject'></status-detail>
+	<status-detail [myObjectNameAny]='newObject' (statusDidChange)='handleStatusDidChange($event)'></status-detail>
 	<!-- <status-detail [myObject-name-any]='"myString"'></status-detail> -->
 </ion-content>

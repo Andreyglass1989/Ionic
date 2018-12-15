@@ -30,4 +30,9 @@ export class DateilPage {
     console.log('ionViewDidLoad DateilPage');
   }
 
+  handleStatusDidChange(newStatusItem){
+    alert("Hello")
+    console.log(newStatusItem)
+  }
+
 }
