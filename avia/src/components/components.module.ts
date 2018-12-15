@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { StatusComponent } from './status/status';
+import { BrowserModule } from '@angular/platform-browser';
+
 @NgModule({
 	declarations: [StatusComponent],
-	imports: [],
+	imports: [BrowserModule],
 	exports: [StatusComponent],
-	entryComponents: [StatusComponent],
+	
 })
 export class ComponentsModule {}

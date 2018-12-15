@@ -12,11 +12,11 @@ import { Component } from '@angular/core';
 })
 export class StatusComponent {
 
-  text: string;
+  results: any[];
 
   constructor() {
     console.log('Hello StatusComponent Component');
-    this.text = 'Hello World';
+    this.results = ['Hello', 'World'];
   }
 
 }

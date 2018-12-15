@@ -13,4 +13,5 @@ IONIC
 
 3. Component Module
 
-	
+4. Iterating in a Ionic Component
+	ERROR: Can't bind to 'ngForOf'
