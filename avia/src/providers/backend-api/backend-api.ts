@@ -16,4 +16,7 @@ export class BackendApiProvider {
     console.log('Hello BackendApiProvider Provider');
   }
 
+  login(){
+  	console.log("working...")
+  }
 }

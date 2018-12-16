@@ -4,6 +4,8 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { LoadingController, NavController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { HomePage } from '../../pages/home/home';
+
+import { BackendApiProvider } from '../../providers/backend-api/backend-api';
 /**
  * Generated class for the AuthComponent component.
  *
@@ -22,7 +24,8 @@ export class AuthComponent {
   	private formBuilder: FormBuilder, 
   	public loadingCtrl: LoadingController,
   	public navCtrl: NavController,
-  	private storage: Storage
+  	private storage: Storage,
+  	private backend: BackendApiProvider,
   	) {
     console.log('Hello AuthComponent Component');
     this.userFormGroup = this.formBuilder.group({
@@ -36,7 +39,7 @@ export class AuthComponent {
   	event.preventDefault()
   	this.loadingBar.present()
   	console.log(this.userFormGroup.value)
-
+  	this.backend.login()
   	setTimeout(()=>{
   		this.loadingBar.dismiss()
   		this.userFormGroup.reset()
