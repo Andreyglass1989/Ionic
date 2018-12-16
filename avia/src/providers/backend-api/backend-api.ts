@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 
 
 const ROOT_ENDPOINT = 'http://127.0.0.1:8000/api/'
+// const ROOT_ENDPOINT2 = 'http://swiftaviagroup.com/api/users/login/'
 /*
   Generated class for the BackendApiProvider provider.
 

@@ -32,7 +32,11 @@ export class AuthComponent {
     	username: ['', Validators.required],	
     	password: ['', Validators.required]
     })
-    this.loadingBar = this.loadingCtrl.create({content: "Please wait ..."})
+    this.createLoadingBar()
+  }
+
+  createLoadingBar(){
+  	this.loadingBar = this.loadingCtrl.create({content: "Please wait ..."})
   }
 
   handleSubmit(event){
@@ -41,10 +45,20 @@ export class AuthComponent {
   	console.log(this.userFormGroup.value)
   	this.backend.login(this.userFormGroup.value).subscribe(data=>{
   		console.log("success", data)
+  		this.loadingBar.dismiss()
+  		this.userFormGroup.reset()
+  		this.storage.set("authToken", data['token'])
+  		this.storage.set("user", data['user'])
+  		this.storage.set("expires", data['expires'])
+  		this.navCtrl.setRoot(HomePage)
+
   	}, error=>{
   		console.log("error", error)
+  		this.loadingBar.dismiss()
+  		this.createLoadingBar()
+  		alert(error['error']['detail'])
   	})
-  	this.loadingBar.dismiss()
+  	
   	// setTimeout(()=>{
   	// 	this.loadingBar.dismiss()
   	// 	this.userFormGroup.reset()
