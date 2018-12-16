@@ -39,14 +39,19 @@ export class AuthComponent {
   	event.preventDefault()
   	this.loadingBar.present()
   	console.log(this.userFormGroup.value)
-  	this.backend.login()
-  	setTimeout(()=>{
-  		this.loadingBar.dismiss()
-  		this.userFormGroup.reset()
-  		this.storage.set("authToken", "whatever")
-  		this.navCtrl.setRoot(HomePage)
+  	this.backend.login(this.userFormGroup.value).subscribe(data=>{
+  		console.log("success", data)
+  	}, error=>{
+  		console.log("error", error)
+  	})
+  	this.loadingBar.dismiss()
+  	// setTimeout(()=>{
+  	// 	this.loadingBar.dismiss()
+  	// 	this.userFormGroup.reset()
+  	// 	this.storage.set("authToken", "whatever")
+  	// 	this.navCtrl.setRoot(HomePage)
   		
-  	}, 2000)
+  	// }, 2000)
 
   }
 
