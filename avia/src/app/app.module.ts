@@ -15,6 +15,7 @@ import { ComponentsModule } from '../components/components.module';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { BackendApiProvider } from '../providers/backend-api/backend-api';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    BackendApiProvider
   ]
 })
 export class AppModule {}

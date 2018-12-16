@@ -31,3 +31,6 @@ IONIC
 
 9.logout page
 	`ionic g page logout`
+
+10.Create a Provider for HTTP Requests
+	`ionic g provider backendAPI`
