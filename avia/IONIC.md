@@ -28,3 +28,6 @@ IONIC
 
 8.Bind a Form to a Model with ngModel
 	`ionic g component auth`
+
+9.logout page
+	`ionic g page logout`

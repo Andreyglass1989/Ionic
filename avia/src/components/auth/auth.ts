@@ -25,11 +25,11 @@ export class AuthComponent {
   	private storage: Storage
   	) {
     console.log('Hello AuthComponent Component');
-    this.userFormGroup = formBuilder.group({
+    this.userFormGroup = this.formBuilder.group({
     	username: ['', Validators.required],	
     	password: ['', Validators.required]
     })
-    this.loadingBar = loadingCtrl.create({content: "Please wait ..."})
+    this.loadingBar = this.loadingCtrl.create({content: "Please wait ..."})
   }
 
   handleSubmit(event){
