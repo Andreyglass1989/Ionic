@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { Storage } from '@ionic/storage';
 
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
@@ -18,7 +18,12 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(
+    public platform: Platform, 
+    public statusBar: StatusBar, 
+    public splashScreen: SplashScreen,
+    private storage: Storage
+    ) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -26,7 +31,7 @@ export class MyApp {
       // { title: 'Feed', component: StatusComponent },
       { title: 'Home', component: HomePage },
       { title: 'List', component: ListPage },
-      { title: 'Login', component: LoginPage }
+      // { title: 'Login', component: LoginPage }
     ];
 
   }
@@ -35,6 +40,15 @@ export class MyApp {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+      this.storage.get('authToken').then((val)=>{
+        console.log("You auth token value is", val);
+        if (!val){
+          this.rootPage = LoginPage
+        }
+        // } else {
+        //   this.rootPage = 
+        // }
+      });
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
