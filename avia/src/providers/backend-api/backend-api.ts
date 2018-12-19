@@ -13,23 +13,24 @@ const ROOT_ENDPOINT = 'http://127.0.0.1:8000'
 */
 @Injectable()
 export class BackendApiProvider {
+	myToken: string;
 
   constructor(public http: HttpClient, private storage: Storage) {
     console.log('Hello BackendApiProvider Provider');
+  	this.storage.get("authToken").then((val)=>{
+  		this.myToken = val;
+    })
   }
 
   getHttpOptions(includeAuth:boolean=true){
   	let myDefaultHeaders = {
-  		'Content-Type': "application/json",
+  		'Content-Type': "application/json"
+  	}
   		// 'X-Requested-With': 'XMLHttpRequest',
   		// 'x-csrf-token': 'csrftoken'
-
-  	}
-  	this.storage.get("authToken").then((val)=>{
-  		if (val && includeAuth){
-  			myDefaultHeaders['Autorization'] = `JWT ${val}`
-  		}
-  	})
+	if (this.myToken && includeAuth){
+		myDefaultHeaders['Autorization'] = `JWT ${this.myToken}`
+	}
   	
   	const httpOptions = {
   		headers: new HttpHeaders(myDefaultHeaders)
