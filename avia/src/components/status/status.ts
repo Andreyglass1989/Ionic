@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { NavController } from 'ionic-angular'
 
 import { BackendApiProvider } from '../../providers/backend-api/backend-api';
@@ -19,6 +19,7 @@ import { DateilPage } from '../../pages/dateil/dateil';
 })
 export class StatusComponent {
   count: number = 0;
+  @Input() newObject: any;
   results: any[];
 
   constructor(public navCtrl: NavController,
@@ -27,6 +28,13 @@ export class StatusComponent {
     console.log('Hello StatusComponent Component');
     // this.results = ['Hello', 'World'];
     this.grabStatusItems();
+  }
+
+  ngOnChanges(changes:SimpleChanges){
+    if (changes.newObject.currentValue){
+      this.results.unshift(this.newObject)
+      this.newObject = null
+    }
   }
 
   grabStatusItems(){
