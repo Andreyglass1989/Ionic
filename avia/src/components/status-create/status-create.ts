@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { LoadingController, NavController } from 'ionic-angular';
@@ -15,6 +15,7 @@ import { BackendApiProvider } from '../../providers/backend-api/backend-api';
 export class StatusCreateComponent {
 	private statusCreateFormGroup: FormGroup;
 	loadingBar: any;	
+	@Output() statusDidCreate = new EventEmitter<any>()
 
   constructor(
 	private formBuilder: FormBuilder, 
@@ -35,18 +36,19 @@ export class StatusCreateComponent {
 
   handleSubmit(event){
   	event.preventDefault()
-  	this.loadingBar.present()
+  	// this.loadingBar.present()
   	const endpoint = '/api/status/?ordering=-timestamp'
   	const newData = this.statusCreateFormGroup.value
+  	this.statusDidCreate.emit(newData)
   	this.backend.post(endpoint, newData, true).subscribe(data=>{
   		console.log("success", data)
-  		this.loadingBar.dismiss()
-  		this.createLoadingBar()
+  		// this.loadingBar.dismiss()
+  		// this.createLoadingBar()
   		this.statusCreateFormGroup.reset()
   	}, error=>{
   		console.log("error", error)
-  		this.loadingBar.dismiss()
-  		this.createLoadingBar()
+  		// this.loadingBar.dismiss()
+  		// this.createLoadingBar()
   		alert(error['error']['detail'])
   	})
   	
