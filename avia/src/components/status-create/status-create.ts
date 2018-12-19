@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { HttpEventType } from '@angular/common/http'
 
 import { LoadingController, NavController } from 'ionic-angular';
 
@@ -15,6 +16,7 @@ import { BackendApiProvider } from '../../providers/backend-api/backend-api';
 export class StatusCreateComponent {
 	private statusCreateFormGroup: FormGroup;
 	loadingBar: any;	
+	progressValue = 0
 	@Output() statusDidCreate = new EventEmitter<any>();
 	myImage: any;
 
@@ -45,17 +47,36 @@ export class StatusCreateComponent {
   	}
   }
 
+  handleProgress(uploadEvent){
+  	
+  	if(uploadEvent.type === HttpEventType.UploadProgress){
+  		this.progressValue = (Math.round(100*uploadEvent.loaded / uploadEvent.total))
+  	}
+  	if(uploadEvent.type === HttpEventType.DownloadProgress){
+  		console.log(Math.round(100*uploadEvent.loaded / uploadEvent.total))
+  	}
+
+  	if (uploadEvent.type === HttpEventType.Response){
+  		const newData = uploadEvent.body
+  		this.progressValue = 0
+  		this.statusCreateFormGroup.reset()
+  		this.statusDidCreate.emit(newData)
+  	}
+  }
+
   handleSubmit(event){
   	event.preventDefault()
   	// this.loadingBar.present()
   	const endpoint = '/api/status/?ordering=-timestamp'
   	const newData = this.statusCreateFormGroup.value
   	// this.statusDidCreate.emit(newData)
-  	this.backend.postWithImage(endpoint, newData, this.myImage).subscribe(data=>{
-  		console.log("success", data) //report progress
+  	this.backend.postWithImage(endpoint, newData, this.myImage).subscribe(event=>{
+  		// console.log("success", data) //report progress
+
+  		this.handleProgress(event)
   		// this.loadingBar.dismiss()
   		// this.createLoadingBar()
-  		this.statusCreateFormGroup.reset()
+
   	}, error=>{
   		console.log("error", error)
   		// this.loadingBar.dismiss()
