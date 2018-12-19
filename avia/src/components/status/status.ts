@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular'
 
+import { BackendApiProvider } from '../../providers/backend-api/backend-api';
 
 import { DateilPage } from '../../pages/dateil/dateil';
 
@@ -17,12 +18,25 @@ import { DateilPage } from '../../pages/dateil/dateil';
   templateUrl: 'status.html'
 })
 export class StatusComponent {
-
+  count: number = 0;
   results: any[];
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController,
+    private backend: BackendApiProvider
+    ) {
     console.log('Hello StatusComponent Component');
-    this.results = ['Hello', 'World'];
+    // this.results = ['Hello', 'World'];
+    this.grabStatusItems();
+  }
+
+  grabStatusItems(){
+    const path = '/api/status/'
+    this.backend.get(path, true).subscribe(data=>{
+      this.count = data['count'] as number; 
+      this.results = data['results'] as any[];
+    }, error=>{
+      console.log(error)
+    })
   }
 
   handleClick(event, statusItem){
