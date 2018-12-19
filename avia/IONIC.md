@@ -34,3 +34,10 @@ IONIC
 
 10.Create a Provider for HTTP Requests
 	`ionic g provider backendAPI`
+
+11. Adjust JWT Expiration
+	в проекте django/cfeapi/restconf/main.py
+
+	'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7), //add this text
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
