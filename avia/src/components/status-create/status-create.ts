@@ -15,7 +15,8 @@ import { BackendApiProvider } from '../../providers/backend-api/backend-api';
 export class StatusCreateComponent {
 	private statusCreateFormGroup: FormGroup;
 	loadingBar: any;	
-	@Output() statusDidCreate = new EventEmitter<any>()
+	@Output() statusDidCreate = new EventEmitter<any>();
+	myImage: any;
 
   constructor(
 	private formBuilder: FormBuilder, 
@@ -25,13 +26,23 @@ export class StatusCreateComponent {
 	) {
     console.log('Hello AuthComponent Component');
     this.statusCreateFormGroup = this.formBuilder.group({
-    	content: ['', Validators.required]
+    	content: ['', Validators.required],
+    	image:   ['', Validators.required]
     })
     this.createLoadingBar()
   }
 
   createLoadingBar(){
   	this.loadingBar = this.loadingCtrl.create({content: "Please wait ..."})
+  }
+
+
+  handleImageInput(files:FileList){
+  	let imageItem = files.item(0)
+  	if (imageItem){
+  		this.myImage = imageItem
+  		console.log(this.myImage)
+  	}
   }
 
   handleSubmit(event){
