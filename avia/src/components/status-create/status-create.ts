@@ -36,7 +36,7 @@ export class StatusCreateComponent {
   handleSubmit(event){
   	event.preventDefault()
   	this.loadingBar.present()
-  	const endpoint = '/api/status/'
+  	const endpoint = '/api/status/?ordering=-timestamp'
   	const newData = this.statusCreateFormGroup.value
   	this.backend.post(endpoint, newData, true).subscribe(data=>{
   		console.log("success", data)
