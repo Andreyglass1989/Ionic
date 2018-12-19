@@ -50,9 +50,9 @@ export class StatusCreateComponent {
   	// this.loadingBar.present()
   	const endpoint = '/api/status/?ordering=-timestamp'
   	const newData = this.statusCreateFormGroup.value
-  	this.statusDidCreate.emit(newData)
-  	this.backend.post(endpoint, newData, true).subscribe(data=>{
-  		console.log("success", data)
+  	// this.statusDidCreate.emit(newData)
+  	this.backend.postWithImage(endpoint, newData, this.myImage).subscribe(data=>{
+  		console.log("success", data) //report progress
   		// this.loadingBar.dismiss()
   		// this.createLoadingBar()
   		this.statusCreateFormGroup.reset()
