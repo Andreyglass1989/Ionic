@@ -41,3 +41,8 @@ IONIC
 	'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7), //add this text
     'JWT_ALLOW_REFRESH': True,
     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
+
+
+12. Status Create Component
+
+	`ionic g component status-create`

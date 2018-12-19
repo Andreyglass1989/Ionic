@@ -24,9 +24,9 @@ export class BackendApiProvider {
 
   getHttpOptions(includeAuth:boolean=true){
   	let myDefaultHeaders = {
-  		'Content-Type': "application/json"
-  	}
-  		// 'X-Requested-With': 'XMLHttpRequest',
+  		'Content-Type': "application/json"}
+  	// 	'X-Requested-With': 'XMLHttpRequest'
+  	// }
   		// 'x-csrf-token': 'csrftoken'
 	if (this.myToken && includeAuth){
 		myDefaultHeaders['Autorization'] = `JWT ${this.myToken}`
