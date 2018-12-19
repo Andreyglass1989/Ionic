@@ -4,7 +4,7 @@ import { Storage } from '@ionic/storage';
 
 
 const ROOT_ENDPOINT = 'http://127.0.0.1:8000'
-// const ROOT_ENDPOINT2 = 'http://swiftaviagroup.com/api/users/login/'
+// const ROOT_ENDPOINT = 'http://swiftaviagroup.com/api/users/login/'
 /*
   Generated class for the BackendApiProvider provider.
 
@@ -20,7 +20,9 @@ export class BackendApiProvider {
 
   getHttpOptions(includeAuth:boolean=true){
   	let myDefaultHeaders = {
-  		'Content-Type': "application/json"
+  		'Content-Type': "application/json",
+  		// 'X-Requested-With': 'XMLHttpRequest',
+  		// 'x-csrf-token': 'csrftoken'
 
   	}
   	this.storage.get("authToken").then((val)=>{
@@ -37,10 +39,11 @@ export class BackendApiProvider {
 
   login(userData:{}){
   	// console.log("working...")
-  	// const endpoint = `${ROOT_ENDPOINT}auth/`
+  	// const endpoint = `${ROOT_ENDPOINT}`
   	// const options = this.getHttpOptions()
   	// return this.http.post(endpoint, userData, options)
-  	return this.post("/api/auth", userData, false)
+
+  	return this.post("/api/auth/", userData, false)
   }
 
   get(path, includeAuth:boolean=false){
@@ -52,6 +55,7 @@ export class BackendApiProvider {
   post(path, data:{}, includeAuth:boolean=true){
   	const endpoint = `${ROOT_ENDPOINT}${path}`
   	const options = this.getHttpOptions(includeAuth)
+  	console.log(endpoint)
   	return this.http.post(endpoint, data, options)
   }
 
